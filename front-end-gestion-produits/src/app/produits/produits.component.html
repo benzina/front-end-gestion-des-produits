@@ -15,7 +15,7 @@
         <tr *ngFor="let p of produits._embedded.produits">
           <td>{{p.idProduit}}</td>
           <td>{{p.designation}}</td>
-          <td>{{p.prix}}</td>
+          <td>{{p.prix| number : '0.2-2'}}</td>
           <td>{{p.quantite}}</td>
         </tr>
       </table>
