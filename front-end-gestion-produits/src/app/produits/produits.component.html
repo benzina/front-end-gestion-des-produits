@@ -5,6 +5,15 @@
       <button class="btn btn-primary" (click)="onGetProduits()">Produits</button>
     </div>
     <div class="panel-body">
+      <form #f="ngForm" (ngSubmit)="onChercheProduits(f.value)" >
+        <div class="form-group">
+          <label>Mots cle :</label>
+          <input type="text" name="motsCle" ngModel>
+          <button class="btn btn-primary" type="submit">Chercher</button>
+        </div>
+
+      </form>
+
       <table *ngIf="produits" class="table table-striped">
         <tr>
           <th>ID</th>
