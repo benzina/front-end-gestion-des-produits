@@ -16,6 +16,8 @@ export class ProduitsComponent implements OnInit {
   public totalPages:number;
   // @ts-ignore
   public pages:Array<number>;
+  // @ts-ignore
+  public currentKeyword:string;
 
   constructor(private catService:CatalogueService) { }
 
@@ -35,9 +37,29 @@ export class ProduitsComponent implements OnInit {
 
   }
 
+  onChercheProduits(form: any){
+    this.currentPage=0;
+    this.currentKeyword = form.motsCle;
+    this.chercheProduits();
+  }
+
+  chercheProduits() {
+    this.catService.getProduitsByKeyWord(this.currentKeyword,this.currentPage,this.size)
+      .subscribe(data=>{
+        // @ts-ignore
+        this.totalPages=data["page"].totalPages;
+        this.pages = new Array<number>(this.totalPages);
+        this.produits=data;
+      },error => {
+        console.log(error);
+      })
+
+
+  }
+
     onGetPageProducts(i: number) {
     this.currentPage=i;
-    this.onGetProduits();
-
+    // @ts-ignore
+      this.chercheProduits();
     }
 }

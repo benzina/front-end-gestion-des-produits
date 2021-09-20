@@ -13,4 +13,8 @@ export class CatalogueService {
   public getProduits(page:number,size:number){
     return this.httpClient.get(this.host+"/produits?page="+page+"&size="+size);
   }
+
+  public getProduitsByKeyWord(mc:string,page:number,size:number) {
+    return this.httpClient.get(this.host+"/produits/search/byDesignationPage?mc="+mc+"&page="+page+"&size="+size);
+  }
 }
