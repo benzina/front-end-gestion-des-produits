@@ -19,6 +19,11 @@
           <td>{{p.quantite}}</td>
         </tr>
       </table>
+      <ul *ngIf="pages" class="nav nav-pills">
+        <li class="clickable" [ngClass]="i==currentPage?'active':''" *ngFor="let p of pages; let i=index">
+          <a (click)="onGetPageProducts(i)">{{i}}</a>
+        </li>
+      </ul>
     </div>
   </div>
 
